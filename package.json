@@ -1,0 +1,14 @@
+{
+  "name": "tv",
+  "version": "1.0.0",
+  "description": "Always on top tv",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Negro",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  }
+}
