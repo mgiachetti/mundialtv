@@ -20,13 +20,24 @@ function loadChannel(channelName) {
     webview.id = 'video';
     webview.setAttribute('preload', channel.preload);
     webview.src = channel.url
-    webview.style = 'display:inline-flex; width:100%; height:100vh';
+    webview.style = 'display:inline-flex; width:100%; height:100vh; opacity: 0';
+    webview.addEventListener('did-stop-loading', () => {
+        webview.style.opacity = '1';
+    })
     document.body.prepend(webview);
     localStorage.lastChannel = channelName;
+
+    document.querySelectorAll('.channel').forEach(elem => elem.classList.remove('channel-active'));
+    document.querySelector(`[channel=${channelName}]`).classList.add('channel-active');
 }
 
+document.querySelectorAll('.channel').forEach(e => {
+    e.onclick = () => {
+        loadChannel(e.getAttribute('channel'));
+    };
+});
+
 loadChannel(localStorage.lastChannel || 'tvpublica');
-window.loadChannel = loadChannel;
 
 
 

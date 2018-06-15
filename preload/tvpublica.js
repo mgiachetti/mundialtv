@@ -9,6 +9,7 @@ function withTag(tag, fn) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    document.body.style.display = 'none';
     $(function() {
         withTag('.load-featured-video-content',(elem) => {
             elem.click()
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 backgroundColor: '#000000',
                 height: '100vh',
                 overflow: 'hidden',
+                display: 'block',
             }).html($('iframe'));
         });
     });

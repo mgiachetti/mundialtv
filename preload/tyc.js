@@ -9,26 +9,27 @@ function withTag(tag, fn) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    document.body.style.display = 'none';
     $(function() {
-        setTimeout(() => {
-            withTag('#player', elem => {
-                $('body').css({
-                    padding: '0',
-                    margin: '0',
-                    backgroundColor: '#000000',
-                    height: '100vh',
-                    width: '100%',
-                    overflow: 'hidden',
-                });
-                elem.css({
-                    height: '100%',
-                    margin: 'auto',
-                    width: '135vh',
-                    maxWidth: '100%',
-                })
-                $('body').html(elem)
-                playerInstance.play()
+        withTag('#player', elem => {
+            $('body').css({
+                padding: '0',
+                margin: '0',
+                backgroundColor: '#000000',
+                height: '100vh',
+                width: '100vw',
+                overflow: 'hidden',
+                display: 'block',
             });
-        }, 5000)
+            elem.css({
+                margin: 'auto',
+                height: '100%',
+                width: '135vh',
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+            });
+            $('body').html(elem)
+            playerInstance.play()
+        });
     });
 });

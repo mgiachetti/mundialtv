@@ -2,15 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Tele</title>
+    <title>Mundial TV</title>
+    <style>
+      .channel {
+          cursor: pointer;
+          margin-top: 2px;
+          margin-left: 20px;
+          color: cornflowerblue;
+      }
+
+      .channel-active {
+          color: aqua;
+      }
+
+      .channel-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        background-color: black;
+      }
+    </style>
   </head>
-  <body style="margin: 0; padding: 0; height: 100vh; overflow: hidden; background-color: black">
-    <div style="position: absolute; top: 0; left: 0;">
-      <a onclick="loadChannel('tyc')" style="color: cornflowerblue">TyC</a>
-      <a onclick="loadChannel('tvpublica')" style="padding-left:20px; color: aqua">TV Publica</a>
+  <body>
+    <div class="channel-container">
+      <a channel="tyc" class="channel">TyC</a>
+      <a channel="tvpublica" class="channel">TV Publica</a>
     </div>
     <script>
-      // You can also require other files to run in this process
       require('./renderer.js')
     </script>
   </body>
