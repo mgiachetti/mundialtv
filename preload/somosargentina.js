@@ -8,20 +8,13 @@ function withTag(tag, fn) {
     }, 100);
 }
 
-function injectJquery(callback) {
-    var script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.2.1.min.js";
-    script.onload = script.onreadystatechange = function() {
-        $(callback);
-    };
-    document.body.appendChild(script);
-}
-
 document.addEventListener("DOMContentLoaded", function(event) {
     document.body.style.display = 'none';
-    injectJquery(function() {
-        withTag('iframe',(elem) => {
-            elem.css({
+    $(function() {
+        withTag('.load-featured-video-content',(elem) => {
+            elem.click()
+            $('.navbar').remove()
+            $('iframe').css({
                 top: 0,
                 left: 0,
                 width: '100%',
@@ -34,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 height: '100vh',
                 overflow: 'hidden',
                 display: 'block',
-            }).html(elem);
+            }).html($('iframe'));
         });
     });
 });

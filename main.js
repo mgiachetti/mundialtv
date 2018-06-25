@@ -3,7 +3,25 @@ const electron = require('electron');
 const {
   app,
   BrowserWindow,
+  // ipcMain,
+  // session,
 } = electron;
+
+// ipcMain.on('disable-x-frame', (event, partition) => {
+//   session.fromPartition(partition).webRequest.onHeadersReceived({}, (d, c) => {
+							
+// 	if(d.responseHeaders['x-frame-options'] || d.responseHeaders['X-Frame-Options']){
+// 		delete d.responseHeaders['x-frame-options'];
+// 		delete d.responseHeaders['X-Frame-Options'];
+// 	}
+// 	c({cancel: false, responseHeaders: d.responseHeaders, statusLine: d.statusLine});
+//   });
+
+// });
+
+// ipcMain.on('webview-log', (event, message) => {
+//   console.log(`Webview - ${message}`);
+// });
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,6 +38,7 @@ function createWindow () {
     y: display.height - height,
     width: width,
     height: height,
+    // 'web-preferences': {'web-security': false}
   });
 
   // and load the index.html of the app.

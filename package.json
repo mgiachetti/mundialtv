@@ -6,10 +6,12 @@
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build",
+    "dist32": "build --win --ia32"
   },
   "build": {
-    "appId": "Mundial TV",
+    "appId": "com.negro.mundialtv",
+    "productName": "Mundial TV",
     "dmg": {
       "contents": [
         {
@@ -31,8 +33,7 @@
       ]
     },
     "win": {
-      "target": "squirrel",
-      "icon": "build/icon.ico"
+      "target": "portable"
     }
   },
   "author": "Negro",
