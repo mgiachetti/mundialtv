@@ -1,21 +1,4 @@
-function withTag(tag, fn) {
-    var tag = $(tag)
-    if (tag.length !== 0) {
-        return fn(tag);
-    }
-    setTimeout(() => {
-        withTag(tag, fn);
-    }, 100);
-}
-
-function injectJquery(callback) {
-    var script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.2.1.min.js";
-    script.onload = script.onreadystatechange = function() {
-        $(callback);
-    };
-    document.body.appendChild(script);
-}
+const { withTag, makeVisible, injectJquery } = require('./commons');
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.body.style.display = 'none';
@@ -35,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 overflow: 'hidden',
                 display: 'block',
             }).html(elem);
+            makeVisible();
         });
     });
 });

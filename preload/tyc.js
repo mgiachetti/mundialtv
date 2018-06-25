@@ -1,18 +1,4 @@
-const { ipcRenderer } = require('electron')
-
-function withTag(tag, fn) {
-    var tag = $(tag)
-    if (tag.length !== 0) {
-        return fn(tag);
-    }
-    setTimeout(() => {
-        withTag(tag, fn);
-    }, 100);
-}
-
-function play() {
-    ipcRenderer.sendToHost('play-click');
-}
+const { withTag, makeVisible, play } = require('./commons');
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.body.style.display = 'none';
@@ -30,14 +16,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     overflow: 'hidden',
                 });
                 elem.css({
-                    margin: 'auto',
-                    maxWidth: '135vh',
+                    padding: 'auto',
+                    maxWidth: '177vh',
                     maxHeight: '100%',
-                    height: `100%`,
+                    height: `56vw`,
                     width: '100vw',
                 });
                 $('body').html(elem)
-                
+                makeVisible();
                 setTimeout(play, 300);
             });
         });

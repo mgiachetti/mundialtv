@@ -1,12 +1,4 @@
-function withTag(tag, fn) {
-    var tag = $(tag)
-    if (tag.length !== 0) {
-        return fn(tag);
-    }
-    setTimeout(() => {
-        withTag(tag, fn);
-    }, 100);
-}
+const { withTag, makeVisible } = require('./commons');
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.body.style.display = 'none';
@@ -28,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 overflow: 'hidden',
                 display: 'block',
             }).html($('iframe'));
+
+            makeVisible();
         });
     });
 });
