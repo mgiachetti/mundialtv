@@ -21,27 +21,30 @@ const channels = {
 }
 
 function loadChannel(channelName) {
-    const channel = channels[channelName];
-    var element = document.getElementById('video');
-    if (element) {
-        element.parentNode.removeChild(element);
-    }
-    const webview = document.createElement('webview');
-    webview.id = 'video';
-    webview.setAttribute('preload', channel.preload);
-    webview.setAttribute('disablewebsecurity', true);
-    webview.src = channel.url
-    webview.style = 'display:inline-flex; width:100%; height:100vh; opacity: 0';
-    webview.addEventListener('did-stop-loading', () => {
-        webview.style.opacity = '1';
-    })
+    document.querySelectorAll('.video').forEach(elem => elem.parentNode.removeChild(elem));
+    let channelsName = channelName.split(',');
+    let height = `${100/channelsName.length}vh`
 
-    webview.addEventListener('ipc-message', (e) => {
-        console.log(...e.args)
-        webview.sendInputEvent({type:'mouseDown', x:webview.clientWidth/2, y: webview.clientHeight/2, button:'left', clickCount: 1});
-        webview.sendInputEvent({type:'mouseUp', x:webview.clientWidth/2, y: webview.clientHeight/2, button:'left', clickCount: 1});
-    })
+    channelsName.forEach((cn) => {
+        const channel = channels[cn];
 
+        const webview = document.createElement('webview');
+        webview.className = 'video';
+        webview.setAttribute('preload', channel.preload);
+        webview.src = channel.url
+        webview.style = `display:inline-flex; width:100%; height:${height}; opacity: 0`;
+        webview.addEventListener('did-stop-loading', () => {
+            webview.style.opacity = '1';
+        })
+
+        webview.addEventListener('ipc-message', (e) => {
+            webview.sendInputEvent({type:'mouseDown', x:webview.clientWidth/2, y: webview.clientHeight/2, button:'left', clickCount: 1});
+            webview.sendInputEvent({type:'mouseUp', x:webview.clientWidth/2, y: webview.clientHeight/2, button:'left', clickCount: 1});
+        });
+
+        document.body.prepend(webview);
+    })
+    
     // webview.addEventListener('console-message', (e) => {
     //     ipcRenderer.send('webview-log', e.message);
     // });
@@ -51,17 +54,9 @@ function loadChannel(channelName) {
     // webview.partition = 'no-xframe';
     // ipcRenderer.send('disable-x-frame', webview.partition);
 
-    setTimeout(() => {
-        console.log(webview.children);
-        
-    }, 5000);
-
-
-    document.body.prepend(webview);
     localStorage.lastChannel = channelName;
-
     document.querySelectorAll('.channel').forEach(elem => elem.classList.remove('channel-active'));
-    document.querySelector(`[channel=${channelName}]`).classList.add('channel-active');
+    document.querySelector(`[channel="${channelName}"]`).classList.add('channel-active');
 }
 
 document.querySelectorAll('.channel').forEach(e => {

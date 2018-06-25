@@ -20,20 +20,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
         withTag('iframe[allowfullscreen]', elem => {
             elem.on('load', () => {
                 $('body').css({
-                    padding: '0',
-                    margin: '0',
+                    display: 'flex',
+                    'flex-direction': 'column',
+                    'justify-content': 'center',
+                    'align-items': 'center',
                     backgroundColor: '#000000',
                     height: '100vh',
                     width: '100vw',
                     overflow: 'hidden',
-                    display: 'block',
                 });
                 elem.css({
                     margin: 'auto',
-                    height: '100%',
-                    width: '135vh',
-                    maxWidth: '100vw',
-                    maxHeight: '100vh',
+                    maxWidth: '135vh',
+                    maxHeight: '100%',
+                    height: `100%`,
+                    width: '100vw',
                 });
                 $('body').html(elem)
                 
