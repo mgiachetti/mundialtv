@@ -3,7 +3,7 @@ const { withTag, makeVisible, play } = require('./commons');
 document.addEventListener("DOMContentLoaded", function(event) {
     document.body.style.display = 'none';
     $(function() {
-        withTag('iframe[allowfullscreen]', elem => {
+        withTag('iframe[allowfullscreen]:first', elem => {
             elem.on('load', () => {
                 $('body').css({
                     display: 'flex',
