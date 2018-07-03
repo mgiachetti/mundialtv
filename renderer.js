@@ -2,10 +2,10 @@
 // const {ipcRenderer} = require('electron');
 const channels = {
     tyc: {
-        url2: 'http://www.televisionparatodos.tv/tycmundial/',
-        url: 'http://tvcanales.cf/channels/tycsports.html',
-        preload2: './preload/tyc.js',
-        preload: './preload/tyc2.js',
+        url: 'http://www.televisionparatodos.tv/tycmundial/',
+        url2: 'http://tvcanales.cf/channels/tycsports.html',
+        preload: './preload/tyc.js',
+        preload2: './preload/tyc2.js',
     },
     tvpublica2: {
         url: 'http://www.tvpublica.com.ar/vivo/',
