@@ -8,7 +8,8 @@
     "pack": "build --dir",
     "dist": "build",
     "dist32": "build --win --ia32",
-    "distAll": "build --mac --win --ia32"
+    "distAll": "build --mac --win --ia32",
+    "release": "./scripts/release.sh"
   },
   "build": {
     "appId": "com.negro.mundialtv",
@@ -35,7 +36,8 @@
     },
     "win": {
       "target": "portable"
-    }
+    },
+    "files": ["**/*", "!releases/*"]
   },
   "author": "Negro",
   "license": "MIT",
